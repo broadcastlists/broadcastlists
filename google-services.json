@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1016623347025",
+    "firebase_url": "https://broadcastlist-14cbe.firebaseio.com",
+    "project_id": "broadcastlist-14cbe",
+    "storage_bucket": "broadcastlist-14cbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016623347025:android:34b99713fa2ea452",
+        "android_client_info": {
+          "package_name": "com.broadcastlists.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016623347025-6o40t03k1795gvoju525u3cpel1bqhn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPxakeslFidW2UjLgeJKo2Swh2ZugCntw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "3"
+}

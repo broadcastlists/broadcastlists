@@ -1,0 +1,48 @@
+{
+  "expo": {
+   "name": "Broadcast Lists",
+   "icon": "./icon-60@2x.png",
+   "version": "1.1.5",
+   "sdkVersion": "25.0.0",
+   "orientation": "portrait",
+   "ios": {
+     "bundleIdentifier": "com.broadcastlists.app",
+     "infoPlist":  {
+     "CLIENT_ID": "1016623347025-42udgpo8ap3njre3a9oiomn4dj4arca2.apps.googleusercontent.com",
+    "REVERSED_CLIENT_ID":"com.googleusercontent.apps.1016623347025-42udgpo8ap3njre3a9oiomn4dj4arca2",
+    "API_KEY":
+    "AIzaSyCrStM4mMjlqGpB1uQKsB6igwppTu46SXk",
+    "GCM_SENDER_ID":
+    "1016623347025",
+    "PLIST_VERSION":
+    "1",
+    "BUNDLE_ID":
+    "com.broadcastlists.app",
+    "PROJECT_ID":
+    "broadcastlist-14cbe",
+    "STORAGE_BUCKET":
+    "broadcastlist-14cbe.appspot.com",
+    "IS_ADS_ENABLED":
+    true,
+    "IS_ANALYTICS_ENABLED":
+    true,
+    "IS_APPINVITE_ENABLED":
+    false,
+    "IS_GCM_ENABLED":
+    true,
+    "IS_SIGNIN_ENABLED":
+    true,
+    "GOOGLE_APP_ID":
+    "1:1016623347025:ios:34b99713fa2ea452",
+    "DATABASE_URL":
+    "https://broadcastlist-14cbe.firebaseio.com"
+    },     
+     "supportsTablet": true
+   },
+   "android": {
+     "package": "com.broadcastlists.app",
+   "versionCode": 3,   
+     "googleServicesFile": "./google-services.json"
+   }
+  }
+}
