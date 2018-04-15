@@ -19,6 +19,7 @@ firebase.initializeApp(config)
 export default class App extends React.Component {
 
 
+  
   render() {
     //splash screen 
     console.log(Platform.OS)
