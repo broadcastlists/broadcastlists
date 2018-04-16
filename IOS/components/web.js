@@ -30,7 +30,7 @@ export default class web extends Component {
        return(
           <View style={{backgroundColor:'black'}}>
 
-            <MyStatusBar backgroundColor='black' barStyle='light-content' />
+            <MyStatusBar backgroundColor='black' barStyle='dark-content' />
 
             <View  
                 style={{overflow:'hidden',height:Dimensions.get('window').height-72.5,backgroundColor:'black',borderRadius:5,borderWidth:1}}>
