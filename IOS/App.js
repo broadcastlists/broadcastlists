@@ -1,11 +1,10 @@
 import React from 'react';
+import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import { Image, Dimensions, StatusBar, View } from 'react-native';
 import Router from './router/index';
 import Router1 from './router/index1';
 import * as firebase from 'firebase';
-import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import { Permissions, Notifications } from 'expo';
-import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import { setTimeout } from 'core-js/library/web/timers';
 //firebase config 
 
@@ -15,8 +14,6 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
   </View>
 );
 
-let tracker = new GoogleAnalyticsTracker("UA-116749563-4");
-tracker.trackScreenView("Main");
 
 export default class App extends React.Component {
 
@@ -29,6 +26,10 @@ export default class App extends React.Component {
   }
 // before rensering any component 
 async  componentDidMount() {
+
+const tracker = new GoogleAnalyticsTracker("UA-116749563-4");
+tracker.trackScreenView("Main");
+
   await firebase.auth().signInAnonymously();     
   const { status: existingStatus } = await Permissions.getAsync(
     Permissions.NOTIFICATIONS
@@ -54,10 +55,6 @@ async  componentDidMount() {
       }
    
     }.bind(this));
-
-
-    let tracker = new GoogleAnalyticsTracker("UA-116749563-1");
-
   }
  
   render() {
