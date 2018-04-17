@@ -2,11 +2,10 @@ import React from 'react';
 
 import { StackNavigator } from 'react-navigation';
 import opening from './../components/opening';
-import main from './../components/main';
 import notification from './../components/notification'
 import oldBroadCastmain from './../components/oldBroadCastmain';
 import oldBroadcastView from './../components/oldBroadcastView';
-import web from './../components/web'
+import main from './index';
 
 const Router = StackNavigator({
     opening: { screen: opening},
@@ -14,7 +13,6 @@ const Router = StackNavigator({
     notification: { screen: notification},
     oldBroadCastmain: { screen: oldBroadCastmain},
     oldBroadcastView: { screen: oldBroadcastView},
-    web:{screen: web},
     
 },{
     headerMode: 'none',

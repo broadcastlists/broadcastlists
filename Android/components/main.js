@@ -74,10 +74,12 @@ export default class Main extends Component {
     // 
     if (this.state.isLoading == true) {
       return (
-    
-        <Image style={{marginHorizontal:Dimensions.get('screen').width*.47,marginVertical:Dimensions.get('screen').height*.48,width:Dimensions.get('screen').width*.07,height:Dimensions.get('screen').height*.042}}
-      source={require('../images/giphy.gif')}
-    ></Image>
+        <View style={{    backgroundColor: '#fff',
+      }}>
+           <Image style={{marginHorizontal:Dimensions.get('screen').width*.47,marginVertical:Dimensions.get('screen').height*.48,width:Dimensions.get('screen').width*.07,height:Dimensions.get('screen').height*.042}}
+         source={require('../images/giphy.gif')}
+       ></Image>
+       </View>
  );
     }
     return (

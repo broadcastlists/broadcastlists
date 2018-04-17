@@ -1,8 +1,12 @@
 {
   "expo": {
+    "splash": {
+      "image": "./X.png",
+      "resizeMode": "cover"
+    },
    "name": "Broadcast Lists",
    "icon": "./icon-60@2x.png",
-   "version": "1.2.0",
+   "version": "1.2.1",
    "sdkVersion": "25.0.0",
    "orientation": "portrait",
    "ios": {

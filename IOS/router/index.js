@@ -8,10 +8,7 @@ import oldBroadcastView from './../components/oldBroadcastView';
 import web from './../components/web';
 
 const Router = StackNavigator({
-    opening: { screen: opening},
     main: { screen: main},
-    oldBroadCastmain: { screen: oldBroadCastmain},
-    oldBroadcastView: { screen: oldBroadcastView},
     web:{screen: web},
 },{
     headerMode: 'none',
@@ -23,5 +20,6 @@ const Router = StackNavigator({
 });
 (props) => { console.log(props.data) }
 export default Router;
+
 
 
