@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Dimensions } from 'react-native';
+import { Image, Dimensions, StatusBar, View } from 'react-native';
 import Router from './router/index';
 import Router1 from './router/index1';
 import * as firebase from 'firebase';
@@ -7,6 +7,14 @@ import { Permissions, Notifications } from 'expo';
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import { setTimeout } from 'core-js/library/web/timers';
 //firebase config 
+
+const MyStatusBar = ({backgroundColor, ...props}) => (
+  <View style={{height:20,backgroundColor:'#fff'}}>
+    <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+  </View>
+);
+
+
 export default class App extends React.Component {
 
   constructor() {
@@ -15,9 +23,6 @@ export default class App extends React.Component {
       registered: false,
       loading: true,
     };
-    setTimeout(() => {
-this.setState({loading:false});
-    },3000)
   }
 // before rensering any component 
 async  componentDidMount() {
@@ -25,7 +30,7 @@ async  componentDidMount() {
   const { status: existingStatus } = await Permissions.getAsync(
     Permissions.NOTIFICATIONS
   );                         
-    firebase.auth().onAuthStateChanged(function(user) {
+  await  firebase.auth().onAuthStateChanged(function(user) {
       console.log(user);
       if (user && existingStatus == 'granted') {
         // User is signed in.
@@ -55,9 +60,14 @@ async  componentDidMount() {
   render() {
     //splash screen 
     if (this.state.loading == true) {
-      return <Image style={{height:Dimensions.get('screen').height,width:Dimensions.get('screen').width}}
-      source={require('./images/X.png')}
-      ></Image> ;
+      return (<View style={{    backgroundColor: '#fff',
+    }}>
+        <MyStatusBar backgroundColor="#fff" barStyle="dark-content" />
+ 
+         <Image style={{marginHorizontal:Dimensions.get('screen').width*.47,marginVertical:Dimensions.get('screen').height*.48,width:Dimensions.get('screen').width*.07,height:Dimensions.get('screen').height*.042}}
+       source={require('./images/giphy.gif')}
+     ></Image>
+     </View>) ;
     }
 // if user hasnt opened an app then show opening 3 page screen 
     if (this.state.registered == false) {

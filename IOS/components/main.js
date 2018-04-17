@@ -81,18 +81,19 @@ export default class Main extends Component {
     
     if (this.state.isLoading == true) {
       return (
-      <View>
-       <MyStatusBar backgroundColor="#171295" barStyle="dark-content" />
-
-        <Image style={{marginHorizontal:Dimensions.get('screen').width*.47,marginVertical:Dimensions.get('screen').height*.48,width:Dimensions.get('screen').width*.07,height:Dimensions.get('screen').height*.042}}
-      source={require('../images/giphy.gif')}
-    ></Image>
-    </View>);
+        <View style={{    backgroundColor: '#fff',
+      }}>
+          <MyStatusBar backgroundColor="#fff" barStyle="dark-content" />
+   
+           <Image style={{marginHorizontal:Dimensions.get('screen').width*.47,marginVertical:Dimensions.get('screen').height*.48,width:Dimensions.get('screen').width*.07,height:Dimensions.get('screen').height*.042}}
+         source={require('../images/giphy.gif')}
+       ></Image>
+       </View>);
     }
     return (
 
         <View style={styles.parentScreen}>
-       <MyStatusBar backgroundColor="#171295" barStyle="dark-content" />
+       <MyStatusBar backgroundColor="#fff" barStyle="dark-content" />
           <Text style={{   color: '#252525',
       fontSize: Dimensions.get('window').height*.038978,
       fontWeight: 'bold',
