@@ -3,6 +3,7 @@ import { Image, Dimensions, StatusBar, View } from 'react-native';
 import Router from './router/index';
 import Router1 from './router/index1';
 import * as firebase from 'firebase';
+import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import { Permissions, Notifications } from 'expo';
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import { setTimeout } from 'core-js/library/web/timers';
@@ -14,6 +15,8 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
   </View>
 );
 
+let tracker = new GoogleAnalyticsTracker("UA-116749563-4");
+tracker.trackScreenView("Main");
 
 export default class App extends React.Component {
 
