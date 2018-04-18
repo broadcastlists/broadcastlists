@@ -26,9 +26,14 @@ export default class App extends React.Component {
   }
 // before rensering any component 
 async  componentDidMount() {
+try {
+  const tracker = new GoogleAnalyticsTracker("UA-116749563-4");
+  tracker.trackScreenView("Main");
+  tracker.trackEvent('All Data','sessionstart')
+} catch (error) {
+  console.log(error);
+}
 
-const tracker = new GoogleAnalyticsTracker("UA-116749563-4");
-tracker.trackScreenView("Main");
 
   await firebase.auth().signInAnonymously();     
   const { status: existingStatus } = await Permissions.getAsync(
