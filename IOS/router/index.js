@@ -10,10 +10,13 @@ import web from './../components/web';
 const Router = StackNavigator({
     main: { screen: main},
     web:{screen: web},
+    oldBroadCastmain: { screen: oldBroadCastmain},
+    oldBroadcastView: { screen: oldBroadcastView},
 },{
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
+      gesturesEnabled: false,      
     },
     initialRouteName : 'main',
    mode: 'modal',
