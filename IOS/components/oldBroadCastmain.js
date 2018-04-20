@@ -84,7 +84,7 @@ export default class Main extends Component {
       borderWidth:0,
       height:Dimensions.get('window').height*.038978,
       width:Dimensions.get('window').height*.038978,
-      right:15,
+      right:19,
       
       position:'absolute',
     }} onPress={() => {
@@ -126,16 +126,34 @@ fetch('https://broadcast-lists.herokuapp.com/old')
 .then((response) => response.json())
 .then((responseJson) => {
   indent = []
-  for(let i =1;i< responseJson.length;i++)
+  for(let i =0;i< responseJson.length;i++)
   {
-    
+    if(i==0)
+    {
+      indent.push(
+        <View key={i} style={{flex:.1,flexDirection:'row',borderBottomColor: '#DCDCDC',
+        borderBottomWidth:2,
+        }}>
+        
+        <Text style={{color: 'black',
+        fontSize: 19,
+        fontWeight: 'bold',
+        marginHorizontal:15,
+        justifyContent: 'center',
+        alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}
+        onPress={() => {
+        props.navigation.navigate("main", {screen: "main"}) } }>Today's Broadcast</Text>
+        </View>
+        )
+    }
+    else{
 indent.push(
 <View key={i} style={{flex:.1,flexDirection:'row',borderBottomColor: '#DCDCDC',
 borderBottomWidth:2,
 }}>
 
 <Text style={{color: 'black',
-fontSize: 20,
+fontSize: 19,
 fontWeight: 'bold',
 marginHorizontal:15,
 justifyContent: 'center',
@@ -145,6 +163,7 @@ props.navigation.navigate("oldBroadcastView", {screen: "oldBroadcastView",sno:re
 </View>
 )
   }
+}
 
   this.setState({
     dataSource: responseJson,

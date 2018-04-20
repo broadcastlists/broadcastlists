@@ -8,8 +8,10 @@ import {
   RefreshControl,  
   Linking,
   Dimensions,
+
 } from 'react-native';
 
+import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Permissions, Notifications } from 'expo';
 import Button from 'apsl-react-native-button'
 import * as firebase from 'firebase';
@@ -18,57 +20,56 @@ import BroadCast from './BroadCast';
 import styles from '../styles';
 import { title } from 'change-case';
 
-
 export default class Main extends Component {
 
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          refreshing: true,
-          isLoading:true,
-        };
-        fetch('https://broadcast-lists.herokuapp.com/')
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({
-            dataSource: responseJson[0].data,
-            time: responseJson[0].date,
-            refreshing:false,
-            isLoading:false,
-          }, function(){
-              
-          });
-  
-        })
-        .catch((error) =>{
-          // console.error(error);
-        });
-      }
+   
+  constructor(props) {
+    super(props);
+    this.state = {
+      refreshing: true,
+      isLoading:true,
+    };
+    fetch('https://broadcast-lists.herokuapp.com/')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        dataSource: responseJson[0].data,
+        time: responseJson[0].date,
+        refreshing:false,
+        isLoading:false,
+      }, function(){
+          
+      });
 
-      _onRefresh() {
-        this.setState({refreshing: true});
-        fetch('https://broadcast-lists.herokuapp.com/')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            
-            
-          this.setState({
-            isLoading: false,
-            refreshing:false,
-            dataSource: responseJson[0].data,
-            time:responseJson[0].date,
-          });
-  
-        })
-        .catch((error) =>{
-          // console.error(error);
-        });
-      }
-      static navigationOptions = {
-        title: "main"
-      }
+    })
+    .catch((error) =>{
+      // console.error(error);
+    });
+  }
 
+  _onRefresh() {
+    this.setState({refreshing: true});
+    fetch('https://broadcast-lists.herokuapp.com/')
+    .then((response) => response.json())
+    .then((responseJson) => {
+        
+        
+      this.setState({
+        isLoading: false,
+        refreshing:false,
+        dataSource: responseJson[0].data,
+        time:responseJson[0].date,
+      });
+
+    })
+    .catch((error) =>{
+      // console.error(error);
+    });
+  }
+  static navigationOptions = {
+    title: "main"
+  }
   render(){
     const { navigate } = this.props.navigation
     // 
@@ -85,7 +86,7 @@ export default class Main extends Component {
     return (
 
         <View style={styles.parentScreen}>
-        
+        <View>
           <Text style={{   color: '#252525',
       fontSize: Dimensions.get('window').height*.038978,
       fontWeight: 'bold',
@@ -95,10 +96,20 @@ export default class Main extends Component {
       }}>    Today's Broadcast
        
       </Text>
-      {/* <Button style={{height:20,width:20,}} onPress={() => {
-       navigate("oldBroadCastmain", {screen: "oldBroadCastmain",mode:'card'})
+      <Button style={{ 
+      marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(30)))/2-(Dimensions.get('window').height*.038978)/2,
+      borderWidth:0,
+      height:Dimensions.get('window').height*.038978,
+      width:Dimensions.get('window').height*.038978,
+      right:15,
+      
+      position:'absolute',
+    }} onPress={() => {
+       navigate("oldBroadCastmain", {screen: "oldBroadCastmain"})
       }
-    }>old</Button> */}
+    }> <MaterialCommunityIcons name="backup-restore" size={Dimensions.get('window').height*.038978}  color="#252525"/>
+    </Button>
+    </View>
           <ScrollView showsVerticalScrollIndicator={false} refreshControl={
         <RefreshControl
           refreshing={this.state.refreshing}
@@ -118,4 +129,6 @@ export default class Main extends Component {
     );
   }
 }
+
+
 
