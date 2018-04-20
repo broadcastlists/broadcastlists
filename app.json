@@ -6,7 +6,7 @@
     },
    "name": "Broadcast Lists",
    "icon": "./icon-60@2x.png",
-   "version": "1.2.1",
+   "version": "1.2.2",
    "sdkVersion": "25.0.0",
    "orientation": "portrait",
    "ios": {
@@ -45,7 +45,7 @@
    },
    "android": {
      "package": "com.broadcastlists.app",
-   "versionCode": 4,   
+   "versionCode": 5,   
      "googleServicesFile": "./google-services.json"
    }
   }

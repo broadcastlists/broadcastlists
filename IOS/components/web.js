@@ -16,9 +16,20 @@ import * as firebase from 'firebase';
 import Admin from './Admin';
 import BroadCast from './BroadCast';
 import styles from '../styles';
-
+let h
+let p
+if(Dimensions.get('window').height === 667)
+{
+  h=20
+  p=20
+}
+else
+{
+  h=44
+  p=54
+}
 const MyStatusBar = ({backgroundColor, ...props}) => (
-  <View style={{height:20,backgroundColor:'black'}}>
+  <View style={{height:h,backgroundColor:'black'}}>
     <StatusBar translucent backgroundColor={backgroundColor} {...props} />
   </View>
 );
@@ -33,7 +44,7 @@ export default class web extends Component {
             <MyStatusBar backgroundColor='black' barStyle='dark-content' />
 
             <View  
-                style={{overflow:'hidden',height:Dimensions.get('window').height-72.5,backgroundColor:'black',borderRadius:5,borderWidth:1}}>
+                style={{overflow:'hidden',height:Dimensions.get('window').height-(p+52.5),backgroundColor:'black',borderRadius:5,borderWidth:1}}>
                 <WebView
                 source={{uri: this.props.navigation.state.params.link}}>
                 </WebView>
@@ -46,6 +57,7 @@ export default class web extends Component {
                 style={{height:52.5,width:Dimensions.get('window').width}}
                 source={require('../images/closeButton.png')} ></Image>
             </Button>
+            
 
           </View>
     );

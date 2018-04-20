@@ -3,6 +3,18 @@ import {
   Dimensions
 } from 'react-native';
 
+let h,p
+if(Dimensions.get('window').height === 667)
+{
+  h=20
+  p=.85
+}
+else
+{
+  h=44
+  p=.82
+}
+
 export default styles = StyleSheet.create({
   wrapper: {
 height:Dimensions.get('screen').height,
@@ -20,15 +32,10 @@ height:Dimensions.get('screen').height,
     position: 'absolute',
   },
   imgBottom: {
-    // marginVertical:20,
-    // marginHorizontal:20,
-    // height: Dimensions.get('window').height*.10045,
-    // width: Dimensions.get('window').width*.17867,
-    right: Dimensions.get('window').width*.048,
-    // top: Dimensions.get('window').height*.4047976,
-    bottom: Dimensions.get('window').height*.455*-1,
+    bottom: Dimensions.get('window').height*.05,
+right:Dimensions.get('window').width*.059,
     position: 'absolute',
-    // top:200,
+    borderWidth:0,
   },
   textHeading: {
     color: '#252525',
@@ -63,6 +70,7 @@ height:Dimensions.get('screen').height,
     marginTop: Dimensions.get('window').height*.15,
 
   },
+  
   parentScreen: {
     flex: 1,
     backgroundColor: '#DCDCDC',
@@ -74,7 +82,7 @@ height:Dimensions.get('screen').height,
     // shadowOpacity: .1,
     //shadow close 
     flex: 1,
-    marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+30))/2-(Dimensions.get('window').height*.038978)/2,
+    marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(h+10)))/2-(Dimensions.get('window').height*.038978)/2,
     marginLeft: 10,
     marginRight: 10,
     marginBottom:10,
@@ -82,7 +90,7 @@ height:Dimensions.get('screen').height,
     backgroundColor: '#fff',
     // position:'absolute',
     borderRadius: 10,
-    height: Dimensions.get('window').height*.85,
+    height: Dimensions.get('window').height*p,
   },
 
 });

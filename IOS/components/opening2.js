@@ -28,7 +28,7 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 export default class Opening extends Component {
   //navigation
     static navigationOptions = {
-      title: "opening"
+      title: "opening2"
     }
     
 
@@ -42,18 +42,19 @@ export default class Opening extends Component {
 
             <Image
             style={styles.imgTop}
-            source={require('../images/raisingHand.png')}
+            source={require('../images/indexFinger.png')}
             ></Image> 
           <View style={styles.viewHeading}> 
-            <Text style={styles.textHeading}>Hey there! I'm Palak.</Text>
+            <Text style={styles.textHeading}>One Broadcast Everyday.</Text>
           </View>
           <View style={styles.viewNormal}>
-            <Text style={styles.textNormal}>I share something amazing to read every day.</Text>
-          </View>
-        <Button onPress={ () => {
-       navigate("opening2", {screen: "opening2"})
+          <Text style={styles.textNormal}>Some of the best articles, essays and book excerpts you'll ever read.</Text>
+  </View>  
+  <Button onPress={ () => {
+       navigate("opening3", {screen: "opening3"})
 
     }} style={styles.imgBottom}>  <Image
+	  
 	  source={require('../images/rightArrow.png')}
     ></Image>
     </Button>
