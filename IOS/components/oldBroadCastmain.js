@@ -31,7 +31,6 @@ if(Dimensions.get('window').height === 667)
 else
 {
   h=44
-
   mh=.45
   ww=.1
   mv=.475
@@ -43,57 +42,9 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
     <StatusBar translucent backgroundColor={backgroundColor} {...props} />
   </View>
 );
+let indent = []
+
 export default class Main extends Component {
-
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          refreshing: true,
-          isLoading:true,
-        };
-        fetch('https://broadcast-lists.herokuapp.com/')
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({
-            dataSource: responseJson[0].data,
-            time: responseJson[0].date,
-            refreshing:false,
-            isLoading:false,
-          }, function(){
-              
-          });
-  
-        })
-        .catch((error) =>{
-          // console.error(error);
-        });
-      }
-
-      _onRefresh() {
-        this.setState({refreshing: true});
-        fetch('https://broadcast-lists.herokuapp.com/')
-        .then((response) => response.json())
-        .then((responseJson) => {
-            
-            
-          this.setState({
-            isLoading: false,
-            refreshing:false,
-            dataSource: responseJson[0].data,
-            time:responseJson[0].date,
-          });
-  
-        })
-        .catch((error) =>{
-          // console.error(error);
-        });
-      }
-      static navigationOptions = {
-        title: "main"
-      }
-
-     
 
   render(){
     const { navigate } = this.props.navigation
@@ -137,6 +88,7 @@ export default class Main extends Component {
       
       position:'absolute',
     }} onPress={() => {
+      indent=[]
       this.props.navigation.goBack()
       }
     }> <Ionicons name="ios-close-outline" size={Dimensions.get('window').height*.038978+15} color="#252525" />
@@ -149,42 +101,12 @@ export default class Main extends Component {
      <View style={styles.innerScreen}>
               
              
-            {/* first */}
-            
-            <View style={{flex:.1,flexDirection:'row',borderBottomColor: '#DCDCDC',
-      borderBottomWidth:2,
-  }}>
+          
+             
+           {indent}
 
-      <Text style={{color: 'black',
-      fontSize: 20,
-      fontWeight: 'bold',
-      marginHorizontal:15,
-      justifyContent: 'center',
-      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}
-      onPress={() => {
-        navigate("main", {screen: "main"}) } }>Broadcast #310</Text>
-          </View>
+         
 
-          {/* second */}
-
-          <View style={{flex:.1,flexDirection:'row',borderBottomColor: '#DCDCDC',
-      borderBottomWidth:2,
-  }}>
-
-      <Text style={{color: 'black',
-      fontSize: 20,
-      marginHorizontal:15,
-      fontWeight: 'bold',
-      justifyContent: 'center',
-      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}
-      onPress={() => {
-        navigate("main", {screen: "main"})
-       }
-      }>Broadcast #309</Text>
-
-          </View>
-
-          {/* end              */}
 
            </View>
           </ScrollView>
@@ -192,6 +114,71 @@ export default class Main extends Component {
         </View>
     );
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      refreshing: true,
+      isLoading:true,
+    };
+   console.log(props);
+fetch('https://broadcast-lists.herokuapp.com/old')
+.then((response) => response.json())
+.then((responseJson) => {
+  indent = []
+  for(let i =1;i< responseJson.length;i++)
+  {
+    
+indent.push(
+<View key={i} style={{flex:.1,flexDirection:'row',borderBottomColor: '#DCDCDC',
+borderBottomWidth:2,
+}}>
+
+<Text style={{color: 'black',
+fontSize: 20,
+fontWeight: 'bold',
+marginHorizontal:15,
+justifyContent: 'center',
+alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}
+onPress={() => {
+props.navigation.navigate("oldBroadcastView", {screen: "oldBroadcastView",sno:responseJson[i].sno}) } }>Broadcast #{responseJson[i].sno}</Text>
+</View>
+)
+  }
+
+  this.setState({
+    dataSource: responseJson,
+    refreshing:false,
+    isLoading:false,
+  });
+
+})
+.catch((error) =>{
+  // console.error(error);
+});
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    fetch('https://broadcast-lists.herokuapp.com/old')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        isLoading: false,
+        refreshing:false,
+        dataSource: responseJson,
+      });
+
+    })
+    .catch((error) =>{
+      // console.error(error);
+    });
+  }
+  static navigationOptions = {
+    title: "oldBroadcastMain"
+  }
+
+ 
 }
 
 
