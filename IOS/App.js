@@ -99,7 +99,7 @@ try {
     }
 // if user hasnt opened an app then show opening 3 page screen 
     if (this.state.registered == false) {
-       return <Router style={{fontFamily: 'San Francisco'}}/>;
+       return <Router1 style={{fontFamily: 'San Francisco'}}/>;
       
     }
 // if user has opened an app then show main today broadcast screen  

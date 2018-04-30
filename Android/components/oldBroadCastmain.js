@@ -63,11 +63,11 @@ export default class Main extends Component {
     }> <Ionicons name="ios-close-outline" size={Dimensions.get('window').height*.038978+15} color="#252525" />
     </Button>
     </View>
-          <ScrollView showsVerticalScrollIndicator={false} refreshControl={
+          <ScrollView showsVerticalScrollIndicator={false} style={styles.innerScreen} refreshControl={
         <RefreshControl
           refreshing={this.state.refreshing}
       onRefresh={this._onRefresh.bind(this)}/>}  >
-     <View style={styles.innerScreen}>
+    
               
              
           
@@ -76,8 +76,6 @@ export default class Main extends Component {
 
          
 
-
-           </View>
           </ScrollView>
           
         </View>
