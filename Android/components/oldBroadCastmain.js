@@ -67,14 +67,8 @@ export default class Main extends Component {
         <RefreshControl
           refreshing={this.state.refreshing}
       onRefresh={this._onRefresh.bind(this)}/>}  >
-    
-              
-             
-          
              
            {indent}
-
-         
 
           </ScrollView>
           
