@@ -8,14 +8,13 @@ import {
   RefreshControl,  
   Linking,
   Dimensions,
-
 } from 'react-native';
-
 import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Permissions, Notifications } from 'expo';
 import Button from 'apsl-react-native-button'
 import * as firebase from 'firebase';
 import Admin from './Admin';
+import Swiper from 'react-native-swiper'
 import BroadCast from './BroadCast';
 import styles from '../styles';
 import { title } from 'change-case';
@@ -23,18 +22,18 @@ import { title } from 'change-case';
 export default class Main extends Component {
 
 
-   
   constructor(props) {
     super(props);
     this.state = {
       refreshing: true,
       isLoading:true,
     };
-    fetch('https://broadcast-lists.herokuapp.com/')
+
+        fetch('https://broadcast-lists.herokuapp.com/supriya')
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
-        dataSource: responseJson[0].data,
+            dataSourcesupriya: responseJson[0].data,
         time: responseJson[0].date,
         refreshing:false,
         isLoading:false,
@@ -42,6 +41,23 @@ export default class Main extends Component {
           
       });
 
+        })
+        .catch((error) =>{
+          // console.error(error);
+        });
+
+        fetch('https://broadcast-lists.herokuapp.com/palak')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({
+            dataSourcepalak: responseJson[0].data,
+            time: responseJson[0].date,
+            refreshing:false,
+            isLoading:false,
+          }, function(){
+              
+          });
+  
     })
     .catch((error) =>{
       // console.error(error);
@@ -50,15 +66,29 @@ export default class Main extends Component {
 
   _onRefresh() {
     this.setState({refreshing: true});
-    fetch('https://broadcast-lists.herokuapp.com/')
+        fetch('https://broadcast-lists.herokuapp.com/supriya')
     .then((response) => response.json())
     .then((responseJson) => {
         
+          this.setState({
+            isLoading: false,
+            refreshing:false,
+            dataSourcesupriya: responseJson[0].data,
+            time:responseJson[0].date,
+          });
         
+        })
+        .catch((error) =>{
+          // console.error(error);
+        });
+
+        fetch('https://broadcast-lists.herokuapp.com/palak')
+        .then((response) => response.json())
+        .then((responseJson) => {
       this.setState({
         isLoading: false,
         refreshing:false,
-        dataSource: responseJson[0].data,
+            dataSourcepalak: responseJson[0].data,
         time:responseJson[0].date,
       });
 
@@ -70,9 +100,12 @@ export default class Main extends Component {
   static navigationOptions = {
     title: "main"
   }
+
+     
+
   render(){
     const { navigate } = this.props.navigation
-    // 
+    
     if (this.state.isLoading == true) {
       return (
         <View style={{    backgroundColor: '#fff',
@@ -80,24 +113,52 @@ export default class Main extends Component {
            <Image style={{marginHorizontal:Dimensions.get('screen').width*.47,marginVertical:Dimensions.get('screen').height*.48,width:Dimensions.get('screen').width*.07,height:Dimensions.get('screen').height*.042}}
          source={require('../images/giphy.gif')}
        ></Image>
-       </View>
- );
+       </View>);
     }
     return (
 
         <View style={styles.parentScreen}>
-        <View>
+       <View stylw={{flexDirection: 'row',flex:1}}> 
           <Text style={{   color: '#252525',
       fontSize: Dimensions.get('window').height*.038978,
       fontWeight: 'bold',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+30))/2-(Dimensions.get('window').height*.038978)/2,
+      marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(30)))/2-(Dimensions.get('window').height*.038978)/2,
       }}>    Today's Broadcast
        
       </Text>
+      
+    </View>
+
+    <Swiper style={styles.wrapper} showsButtons={false} showsPagination={true} loop={true}>
+{/* -----------------1------------------ */}
+          <ScrollView showsVerticalScrollIndicator={false} refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+      onRefresh={this._onRefresh.bind(this)}/>}  >
+     <View style={styles.innerScreen}>
+
+
+
+
+
+              <View style={{flex:.11,flexDirection:'row',borderBottomColor: '#DCDCDC',
+      borderBottomWidth:2,
+  }}>
+
+      <Image source={require("../images/profilePic.jpeg")} style={{width:35,height:35,borderRadius:17.5,marginHorizontal:15,marginVertical:(Dimensions.get('window').height*.05-17.5)/2}}></Image>
+      
+      
+      
+      <Text style={{color: 'black',
+      fontSize: 18,
+      fontWeight: 'bold',
+      justifyContent: 'center',
+      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}>Palak Zatakia</Text>
+
       <Button style={{ 
-      marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(30)))/2-(Dimensions.get('window').height*.038978)/2,
+  marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(30)))/2-(Dimensions.get('window').height*.038978)/2,
       borderWidth:0,
       height:Dimensions.get('window').height*.038978,
       width:Dimensions.get('window').height*.038978,
@@ -105,30 +166,85 @@ export default class Main extends Component {
       
       position:'absolute',
     }} onPress={() => {
-       navigate("oldBroadCastmain", {screen: "oldBroadCastmain"})
+   navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user : "Palak Zatakia"})
       }
     }> <MaterialCommunityIcons name="backup-restore" size={Dimensions.get('window').height*.038978}  color="#252525"/>
     </Button>
+
+
+
+          </View>
+              <BroadCast data={
+            this.state.dataSourcepalak}
+              navigate = {navigate}
+    />
     </View>
+          </ScrollView>
+          
+{/* -----------------1------------------ */}
+
+
+{/* -----------------1------------------ */}
           <ScrollView showsVerticalScrollIndicator={false} refreshControl={
         <RefreshControl
           refreshing={this.state.refreshing}
       onRefresh={this._onRefresh.bind(this)}/>}  >
      <View style={styles.innerScreen}>
-              <Admin time={this.state.time}/>
+             
+
+
+
+     <View style={{flex:.11,flexDirection:'row',borderBottomColor: '#DCDCDC',
+      borderBottomWidth:2,
+  }}>
+
+      <Image source={require("../images/0.jpg")} style={{width:35,height:35,borderRadius:17.5,marginHorizontal:15,marginVertical:(Dimensions.get('window').height*.05-17.5)/2}}></Image>
+      
+      
+      
+      <Text style={{color: 'black',
+      fontSize: 18,
+      fontWeight: 'bold',
+      justifyContent: 'center',
+      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}>Supriya Paul</Text>
+
+<Button style={{ 
+  marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(30)))/2-(Dimensions.get('window').height*.038978)/2,
+  borderWidth:0,
+  height:Dimensions.get('window').height*.038978,
+  width:Dimensions.get('window').height*.038978,
+  right:15,
+  
+  position:'absolute',
+}} onPress={() => {
+   navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user:"Supriya Paul"})
+  }
+}> <MaterialCommunityIcons name="backup-restore" size={Dimensions.get('window').height*.038978}  color="#252525"/>
+</Button>
+
+
+          </View>
+
+
+
    
             <BroadCast data={
-            this.state.dataSource}
+            this.state.dataSourcesupriya}
               navigate = {navigate}
     />
-     
            </View>
           </ScrollView>
           
+{/* -----------------1------------------ */}
+
+
+
+
+
+</Swiper>
         </View>
     );
   }
 }
-
 
 

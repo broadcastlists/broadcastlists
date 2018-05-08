@@ -122,7 +122,7 @@ export default class Main extends Component {
       isLoading:true,
     };
    console.log(props);
-fetch('https://broadcast-lists.herokuapp.com/old')
+fetch('https://broadcast-lists.herokuapp.com/old/'+props.navigation.state.params.user)
 .then((response) => response.json())
 .then((responseJson) => {
   indent = []
@@ -179,7 +179,7 @@ props.navigation.navigate("oldBroadcastView", {screen: "oldBroadcastView",sno:re
 
   _onRefresh() {
     this.setState({refreshing: true});
-    fetch('https://broadcast-lists.herokuapp.com/old')
+    fetch('https://broadcast-lists.herokuapp.com/old/'+props.navigation.state.params.user)
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({

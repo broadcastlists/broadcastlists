@@ -63,6 +63,7 @@ export default class Main extends Component {
             time: responseJson[0].date,
             refreshing:false,
             isLoading:false,
+            user: responseJson[0].user
           }, function(){
               
           });
@@ -86,6 +87,7 @@ export default class Main extends Component {
             refreshing:false,
             dataSource: responseJson[0].data,
             time:responseJson[0].date,
+            user:responseJson[0].user,
           });
   
         })
@@ -141,9 +143,15 @@ export default class Main extends Component {
       
       position:'absolute',
     }} onPress={() => {
-       navigate("oldBroadCastmain", {screen: "oldBroadCastmain"})
+      if(this.state.user == "Supriya Paul")
+      {
+       navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user:"Supriya Paul"})
       }
-    }> <MaterialCommunityIcons name="backup-restore" size={Dimensions.get('window').height*.038978}  color="#252525"/>
+      else
+      {
+       navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user:"Palak Zatakia"})
+     } }
+    } > <MaterialCommunityIcons name="backup-restore" size={Dimensions.get('window').height*.038978}  color="#252525"/>
     </Button>
     </View>
           <ScrollView showsVerticalScrollIndicator={false} refreshControl={
@@ -152,7 +160,7 @@ export default class Main extends Component {
       onRefresh={this._onRefresh.bind(this)}/>}  >
      <View style={styles.innerScreen}>
 
-              <Admin time={this.state.time}/>
+              <Admin time={this.state.time} name={this.state.user}/>
             
               <BroadCast data={
             this.state.dataSource}
