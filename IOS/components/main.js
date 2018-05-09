@@ -188,15 +188,15 @@ export default class Main extends Component {
       fontSize: 18,
       fontWeight: 'bold',
       justifyContent: 'center',
-      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}>Palak Zatakia</Text>
+      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.04)/2}}>Palak Zatakia</Text>
 
 <Button style={{ 
-  marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(h+10)))/2-(Dimensions.get('window').height*.038978)/2,
+  marginVertical:(Dimensions.get('window').height*.04)/2,
   borderWidth:0,
   height:Dimensions.get('window').height*.038978,
   width:Dimensions.get('window').height*.038978,
   right:15,
-  
+  alignItems:'center',
   position:'absolute',
 }} onPress={() => {
    navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user : "Palak Zatakia"})
@@ -239,11 +239,12 @@ export default class Main extends Component {
       fontSize: 18,
       fontWeight: 'bold',
       justifyContent: 'center',
-      alignItems: 'center',marginVertical:(Dimensions.get('window').height*.05)/2}}>Supriya Paul</Text>
+      alignItems: 'center',
+      marginVertical:(Dimensions.get('window').height*.04)/2}}>Supriya Paul</Text>
 
 <Button style={{ 
-  marginTop:(Dimensions.get('window').height-(Dimensions.get('window').height*.85+(h+10)))/2-(Dimensions.get('window').height*.038978)/2,
-  borderWidth:0,
+  marginVertical:(Dimensions.get('window').height*.04)/2,
+   borderWidth:0,
   height:Dimensions.get('window').height*.038978,
   width:Dimensions.get('window').height*.038978,
   right:15,

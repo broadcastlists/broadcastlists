@@ -7,12 +7,12 @@ let h,p
 if(Dimensions.get('window').height === 667)
 {
   h=20
-  p=.85
+  p=.78
 }
 else
 {
   h=44
-  p=.82
+  p=.75
 }
 
 export default styles = StyleSheet.create({
@@ -73,6 +73,7 @@ right:Dimensions.get('window').width*.059,
   
   parentScreen: {
     flex: 1,
+
     backgroundColor: '#DCDCDC',
   },
   innerScreen: {
