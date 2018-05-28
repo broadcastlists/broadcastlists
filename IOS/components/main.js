@@ -164,12 +164,21 @@ export default class Main extends Component {
       
     </View>
 
-    <Swiper style={styles.wrapper} showsButtons={false} showsPagination={true} loop={true}>
+    {/* <Swiper style={styles.wrapper} showsButtons={false} showsPagination={true} loop={false}> */}
+    
+    <ScrollView
+          contentContainerStyle={styles.wrapper}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          directionalLockEnabled
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh.bind(this)}/>}
+        >
 {/* -----------------1------------------ */}
-          <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-        <RefreshControl
-          refreshing={this.state.refreshing}
-      onRefresh={this._onRefresh.bind(this)}/>}  >
+          <ScrollView showsVerticalScrollIndicator={false}   >
      <View style={styles.innerScreen}>
 
 
@@ -218,14 +227,8 @@ export default class Main extends Component {
 
 
 {/* -----------------1------------------ */}
-          <ScrollView showsVerticalScrollIndicator={false} refreshControl={
-        <RefreshControl
-          refreshing={this.state.refreshing}
-      onRefresh={this._onRefresh.bind(this)}/>}  >
+          <ScrollView showsVerticalScrollIndicator={false} >
      <View style={styles.innerScreen}>
-             
-
-
 
      <View style={{flex:.11,flexDirection:'row',borderBottomColor: '#DCDCDC',
       borderBottomWidth:2,
@@ -271,11 +274,8 @@ export default class Main extends Component {
           
 {/* -----------------1------------------ */}
 
-
-
-
-
-</Swiper>
+{/* </Swiper> */}
+        </ScrollView>
         </View>
     );
   }

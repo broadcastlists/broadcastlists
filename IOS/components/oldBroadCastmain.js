@@ -94,13 +94,14 @@ export default class Main extends Component {
     }> <Ionicons name="ios-close-outline" size={Dimensions.get('window').height*.038978+15} color="#252525" />
     </Button>
     </View>
+    {console.log(this.state.refreshing)}
           <ScrollView showsVerticalScrollIndicator={false} style={styles.innerScreen} refreshControl={
         <RefreshControl 
           refreshing={this.state.refreshing}
       onRefresh={this._onRefresh.bind(this)}/>}  >
     
               
-             
+            
           
              
            {indent}
@@ -120,6 +121,7 @@ export default class Main extends Component {
     this.state = {
       refreshing: true,
       isLoading:true,
+      propy:props,
     };
    console.log(props);
 fetch('https://broadcast-lists.herokuapp.com/old/'+props.navigation.state.params.user)
@@ -179,7 +181,7 @@ props.navigation.navigate("oldBroadcastView", {screen: "oldBroadcastView",sno:re
 
   _onRefresh() {
     this.setState({refreshing: true});
-    fetch('https://broadcast-lists.herokuapp.com/old/'+props.navigation.state.params.user)
+    fetch('https://broadcast-lists.herokuapp.com/old/'+this.state.propy.navigation.state.params.user)
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({

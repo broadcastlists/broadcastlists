@@ -14,7 +14,7 @@ import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Permissions, Notifications } from 'expo';
 import Button from 'apsl-react-native-button'
 import * as firebase from 'firebase';
-import Admin from './Admin';
+import Admin2 from './admin2';
 import BroadCast from './BroadCast';
 import styles from '../styles';
 import { title } from 'change-case';
@@ -143,24 +143,18 @@ export default class Main extends Component {
       
       position:'absolute',
     }} onPress={() => {
-      if(this.state.user == "Supriya Paul")
-      {
-       navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user:"Supriya Paul"})
-      }
-      else
-      {
-       navigate("oldBroadCastmain", {screen: "oldBroadCastmain",user:"Palak Zatakia"})
-     } }
-    } > <MaterialCommunityIcons name="backup-restore" size={Dimensions.get('window').height*.038978}  color="#252525"/>
+      this.props.navigation.goBack()
+     }
+    } > <Ionicons name="ios-close-outline" size={Dimensions.get('window').height*.038978+15} color="#252525" />
     </Button>
     </View>
           <ScrollView showsVerticalScrollIndicator={false} refreshControl={
         <RefreshControl
           refreshing={this.state.refreshing}
       onRefresh={this._onRefresh.bind(this)}/>}  >
-     <View style={styles.innerScreen}>
+     <View style={styles.innerScreen2}>
 
-              <Admin time={this.state.time} name={this.state.user}/>
+              <Admin2 name={this.state.user}/>
             
               <BroadCast data={
             this.state.dataSource}
